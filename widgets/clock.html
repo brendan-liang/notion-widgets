@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock by brendan</title>
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 100vh;
+            width: 100vw;
+
+            font-family: 'Roboto Mono';
+        }
+
+        #clock {
+            font-size: 50vh;
+        }
+
+    </style>
+    <div id="clock">
+        12:01
+    </div>
+    <script>
+        const clockEl = document.querySelector("#clock");
+
+        function isDST(d) {
+            let jan = new Date(d.getFullYear(), 0, 1).getTimezoneOffset();
+            let jul = new Date(d.getFullYear(), 6, 1).getTimezoneOffset();
+            return Math.max(jan, jul) !== d.getTimezoneOffset();    
+        }
+
+        setTimeout(() => {
+            const t = Date().split(" ")[4].split(":")
+            // clockEl.textContent = `${Math.floor(t / 3600000) % 12 - (isDST(Date()))}:${Math.floor(t / 60000) % 60}`
+            clockEl.textContent = `${t[0]}:${t[1]}`;
+        }, 500)
+    </script>
+</body>
+</html>
