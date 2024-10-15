@@ -40,7 +40,7 @@
             return Math.max(jan, jul) !== d.getTimezoneOffset();    
         }
 
-        setTimeout(() => {
+        setInterval(() => {
             const t = Date().split(" ")[4].split(":")
             // clockEl.textContent = `${Math.floor(t / 3600000) % 12 - (isDST(Date()))}:${Math.floor(t / 60000) % 60}`
             clockEl.textContent = `${t[0]}:${t[1]}`;
