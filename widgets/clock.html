@@ -16,6 +16,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
 
             height: 100vh;
             width: 100vw;
@@ -25,26 +26,42 @@
 
         #clock {
             font-size: 50vh;
+            font-weight: 800;
+        }
+
+        #date {
+            font-size: 8vh;
+            font-weight: 300;
         }
 
     </style>
     <div id="clock">
         12:01
     </div>
+    <div id="date">
+        Wednesday 12th September 2024
+    </div>
     <script>
         const clockEl = document.querySelector("#clock");
+        const dateEl = document.querySelector("#date")
 
-        function isDST(d) {
-            let jan = new Date(d.getFullYear(), 0, 1).getTimezoneOffset();
-            let jul = new Date(d.getFullYear(), 6, 1).getTimezoneOffset();
-            return Math.max(jan, jul) !== d.getTimezoneOffset();    
-        }
+        // https://stackoverflow.com/questions/15397372/javascript-new-date-ordinal-st-nd-rd-th
+        const nth = (d) => {
+            if (d > 3 && d < 21) return 'th';
+            switch (d % 10) {
+                case 1:  return "st";
+                case 2:  return "nd";
+                case 3:  return "rd";
+                default: return "th";
+            }
+        };
 
         setInterval(() => {
-            const t = Date().split(" ")[4].split(":")
-            // clockEl.textContent = `${Math.floor(t / 3600000) % 12 - (isDST(Date()))}:${Math.floor(t / 60000) % 60}`
-            clockEl.textContent = `${t[0]}:${t[1]}`;
-        }, 500)
+            const d = new Date();
+            clockEl.textContent = `${d.getHours()}:${d.getMinutes()}`;
+            dateEl.textContent = `${["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][d.getDay()]} ${d.getDate()}${nth(d.getDate())} ${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][d.getMonth()]}`;
+
+        }, 500);
     </script>
 </body>
 </html>
