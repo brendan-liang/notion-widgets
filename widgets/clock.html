@@ -58,7 +58,7 @@
 
         setInterval(() => {
             const d = new Date();
-            clockEl.textContent = `${d.getHours()}:${d.getMinutes()}`;
+            clockEl.textContent = `${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}`;
             dateEl.textContent = `${["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][d.getDay()]} ${d.getDate()}${nth(d.getDate())} ${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][d.getMonth()]}`;
 
         }, 500);
