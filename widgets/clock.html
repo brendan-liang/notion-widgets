@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clock by brendan</title>
-</head>
-<body>
+    <script src="../dark.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+        :root {
+            --link: rgb(55, 53, 47);
+            --colour: rgb(18, 19, 20);
+            --background: rgb(255, 255, 255);
+        }
+        
         body {
             margin: 0;
             padding: 0;
@@ -22,6 +27,9 @@
             width: 100vw;
 
             font-family: 'Roboto Mono';
+
+            color: var(--colour);
+            background: var(--background);
         }
 
         #clock {
@@ -35,6 +43,8 @@
         }
 
     </style>
+</head>
+<body>
     <div id="clock">
         12:01
     </div>
@@ -42,8 +52,14 @@
         Wednesday 12th September 2024
     </div>
     <script>
+        const bodyEl = document.querySelector("body");
+
         const clockEl = document.querySelector("#clock");
-        const dateEl = document.querySelector("#date")
+        const dateEl = document.querySelector("#date");
+
+        const query = new URLSearchParams(window.location.search);
+        // bodyEl.style.color = query.get("color");
+        // bodyEl.style.background = query.get("bg");
 
         // https://stackoverflow.com/questions/15397372/javascript-new-date-ordinal-st-nd-rd-th
         const nth = (d) => {

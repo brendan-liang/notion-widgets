@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>widgets by brendan</title>
+    <script src="dark.js"></script>
 </head>
 <body>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+        :root {
+            --link: rgb(55, 53, 47);
+            --colour: rgb(18, 19, 20);
+            --background: rgb(255, 255, 255);
+        }
 
         body {
             margin: 0;
@@ -25,15 +32,27 @@
             font-family: 'Roboto Mono', monospace;
         }
 
+        a {
+            color: var(--link);
+        }
+
         #label {
             position: absolute;
             bottom: 1rem;
             right: 1rem;
         }
+
+        #darklight {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+        }
     </style>
     <a href="widgets/clock.html">clock widget</a>
+    <a href="widgets/quote.html">quote widget</a>
     <span>more coming soon!</span>
 
+    <a href="?dark=on" id="darklight">dark mode</a>
     <span id="label">made with <3 by brendan</span>
 </body>
 </html>
